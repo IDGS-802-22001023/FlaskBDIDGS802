@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Error 404 - Página Perdida</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 120px;
+            margin: 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        h2 {
+            margin-top: -20px;
+            font-weight: 400;
+        }
+
+        p {
+            opacity: 0.8;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            background-color: #ffcc00;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: white;
+            transform: scale(1.05);
+        }
+
+        .emoji {
+            font-size: 50px;
+            animation: spin 6s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>x
+
+<body>
+
+    <div class="container">
+        <div class="emoji">🚀</div>
+        <h1>404</h1>
+        <h2>¡Ups! Te has perdido en el espacio</h2>
+        <p>La página que buscas no existe o se fue de vacaciones 🏖️</p>
+        <button onclick="goHome()">Volver al inicio</button>
+    </div>
+
+    <script>
+        function goHome() {
+            window.location.href = "/";
+        }
+    </script>
+
+</body>
+
+</html>
