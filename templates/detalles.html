@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="w-full max-w-sm bg-neutral-primary-soft p-6 border border-default rounded-base shadow-xs">
+
+    <div>
+        <h5 class="text-2xl text-heading font-bold tracking-tight mb-4">
+            Detalles del Alumno
+        </h5>
+
+        <div class="space-y-3">
+            <p class="text-lg">
+                <span class="font-semibold">ID:</span>
+                {{ alum.id }}
+            </p>
+
+            <p class="text-lg">
+                <span class="font-semibold">Nombre:</span>
+                {{ alum.nombre }}
+            </p>
+
+            <p class="text-lg">
+                <span class="font-semibold">Apellido Paterno:</span>
+                {{ alum.apaterno }}
+            </p>
+
+            <p class="text-lg">
+                <span class="font-semibold">Email:</span>
+                {{ alum.email }}
+            </p>
+        </div>
+
+        <div class="mt-6">
+            <!-- modificar?id={{alum.id}} -->
+            <a href="index"
+               class="inline-block text-white bg-blue-600 hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2">
+                Volver
+            </a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
