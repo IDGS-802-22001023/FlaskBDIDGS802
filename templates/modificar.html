@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 {% block container %}
 {% import "_macros.html" as macros %}
- 
+
 <form class="max-w-sm mx-auto mt-5" method="post" unvalidated>
-   {{form.csrf_token}}
-    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+  {{form.csrf_token}}
+  <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
   <div class="mb-5">
     {{macros.campoNuevo(form.id, class="block mb-2.5 text-sm font-medium text-heading")}}
   </div>
@@ -14,10 +14,17 @@
   <div class="mb-5">
     {{macros.campoNuevo(form.aPaterno, class="block mb-2.5 text-sm font-medium text-heading")}}
   </div>
-    <div class="mb-5">
+  <div class="mb-5">
     {{macros.campoNuevo(form.email, class="block mb-2.5 text-sm font-medium text-heading")}}
   </div>
-  <button type="submit" class="text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Modificar</button>
+  <button type="submit" class="text-blue-900 bg-blue-200 hover:bg-blue-300 
+           focus:ring-4 focus:ring-blue-100
+           shadow-sm font-medium leading-5 
+           rounded-lg text-sm px-4 py-2.5 
+           transition-all duration-200 ease-in-out
+           focus:outline-none">
+    Actualizar
+  </button>
 </form>
- 
+
 {% endblock %}
