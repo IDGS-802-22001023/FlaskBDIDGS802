@@ -21,8 +21,9 @@
             <thead class="bg-gradient-to-r from-pink-100 to-purple-100 text-pink-700">
                 <tr>
                     <th class="px-6 py-4 font-semibold">Nombre</th>
-                    <th class="px-6 py-4 font-semibold">Apellido</th>
+                    <th class="px-6 py-4 font-semibold">Apellidos</th>
                     <th class="px-6 py-4 font-semibold">Correo</th>
+                    <th class="px-6 py-4 font-semibold">telefono</th>
                     <th class="px-6 py-4 font-semibold text-center">Editar</th>
                     <th class="px-6 py-4 font-semibold text-center">Detalles</th>
                     <th class="px-6 py-4 font-semibold text-center">Eliminar</th>
@@ -36,10 +37,13 @@
                         {{ alum.nombre }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ alum.apaterno }}
+                        {{ alum.apellidos }}
                     </td>
                     <td class="px-6 py-4 text-purple-600">
                         {{ alum.email }}
+                    </td>
+                    <td class="px-6 py-4 text-purple-600">
+                        {{ alum.telefono }}
                     </td>
 
                     <td class="px-6 py-4 text-center">
@@ -50,7 +54,7 @@
                     </td>
 
                     <td class="px-6 py-4 text-center">
-                        <a href="/detalles/{{ alum.id }}"
+                        <a href="/detalles?id={{ alum.id }}"
                             class="inline-flex items-center justify-center bg-green-200 hover:bg-green-300 text-green-800 font-medium rounded-xl text-xs px-4 py-2 transition">
                             Ver
                         </a>

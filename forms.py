@@ -1,20 +1,40 @@
-from wtforms import Form, RadioField
-from wtforms import StringField, IntegerField, PasswordField
-from wtforms import EmailField
-from wtforms import validators
+from flask_wtf import FlaskForm
+from wtforms import StringField, HiddenField, SubmitField
+from wtforms.validators import DataRequired, Email, Length
 
+class UserForm(FlaskForm):
 
-class UserForm(Form): #HEREDA DE LA CLASE FORM
-    id = IntegerField('ID',[
-        validators.DataRequired(message="El campo es requerido")
-        ])
-    nombre = StringField('Nombre Alumno', [
-        validators.DataRequired(message="El campo es requerido"),
-        validators.length(min=3, max=10, message="Ingrese un nombre valido")
-    ])
-    aPaterno = StringField('Apaterno',[
-        validators.DataRequired(message="El campo es requerido"),
-    ])
-    email = EmailField('Email', [
-        validators.Email(message="Ingrese un correo valido"),
-    ])
+    id = HiddenField()
+
+    nombre = StringField(
+        'Nombre Alumno',
+        validators=[
+            DataRequired(message="El campo es requerido"),
+            Length(min=3, max=50, message="Ingrese un nombre válido")
+        ]
+    )
+
+    apellidos = StringField(
+        'Apellidos',
+        validators=[
+            DataRequired(message="El campo es requerido")
+        ]
+    )
+
+    email = StringField(
+        'Email',
+        validators=[
+            DataRequired(message="El campo es requerido"),
+            Email(message="Ingrese un correo válido")
+        ]
+    )
+
+    telefono = StringField(
+        'Teléfono',
+        validators=[
+            DataRequired(message="El campo es requerido"),
+            Length(min=8, max=20, message="Ingrese un teléfono válido")
+        ]
+    )
+
+    submit = SubmitField('Guardar')
