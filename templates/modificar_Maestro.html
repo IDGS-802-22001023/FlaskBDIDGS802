@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<form class="max-w-sm mx-auto mt-5" method="post" novalidate>
+    {{ form.csrf_token }}
+
+    {{ macros.campoNuevo(form.id) }}
+    {{ macros.campoNuevo(form.matricula) }}
+    {{ macros.campoNuevo(form.nombre) }}
+    {{ macros.campoNuevo(form.apellidos) }}
+    {{ macros.campoNuevo(form.especialidad) }}
+    {{ macros.campoNuevo(form.email) }}
+<br>
+    <center><button type="submit" class="bg-blue-200 hover:bg-blue-300 px-4 py-2 rounded-lg text-blue-900">
+        Guardar Cambios
+    </button></center>
+</form>
+
+{% endblock %}

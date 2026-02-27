@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block container %}
+{% import "_macros.html" as macros %}
+
+<form class="max-w-sm mx-auto mt-5" method="post">
+    {{ form.csrf_token }}
+
+
+    {{ macros.campoNuevo(form.nombre) }}
+    {{ macros.campoNuevo(form.apellidos) }}
+    {{ macros.campoNuevo(form.email) }}
+    <br>
+    <center><button type="submit" class="bg-red-200 hover:bg-red-300 px-4 py-2 rounded-lg text-red-900">
+            Eliminar
+        </button></center>
+</form>
+
+{% endblock %}

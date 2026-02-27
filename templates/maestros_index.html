@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block container %}
+
+<div class="max-w-7xl mx-auto px-6 mt-12">
+    <br>
+
+    <div class="flex justify-between items-center mb-8">
+        <h2 class="text-3xl font-bold text-pink-600">
+            Lista de Maestros
+        </h2>
+
+        <a href="{{ url_for('maestros.agregar_maestro') }}"
+           class="bg-purple-200 hover:bg-purple-300 text-purple-800
+                  font-semibold rounded-xl text-sm px-6 py-2 shadow-md transition">
+            + Nuevo Maestro
+        </a>
+    </div>
+
+    <div class="relative overflow-x-auto bg-pink-50 shadow-lg rounded-2xl border border-pink-200">
+        <table class="w-full text-sm text-left text-gray-700">
+            <thead class="bg-gradient-to-r from-pink-100 to-purple-100 text-pink-700">
+                <tr>
+                    <th class="px-6 py-4">Matrícula</th>
+                    <th class="px-6 py-4">Nombre</th>
+                    <th class="px-6 py-4">Apellidos</th>
+                    <th class="px-6 py-4">Especialidad</th>
+                    <th class="px-6 py-4">Correo</th>
+                    <th class="px-6 py-4 text-center">Editar</th>
+                    <th class="px-6 py-4 text-center">Detalles</th>
+                    <th class="px-6 py-4 text-center">Eliminar</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for maestro in maestros %}
+                <tr class="border-b border-pink-200 hover:bg-pink-100 transition">
+                    <td class="px-6 py-4">{{ maestro.matricula }}</td>
+                    <td class="px-6 py-4">{{ maestro.nombre }}</td>
+                    <td class="px-6 py-4">{{ maestro.apellidos }}</td>
+                    <td class="px-6 py-4">{{ maestro.especialidad }}</td>
+                    <td class="px-6 py-4">{{ maestro.email }}</td>
+
+                    <td class="px-6 py-4 text-center">
+                        <a href="{{ url_for('maestros.modificar_maestro', id=maestro.id) }}"
+                           class="bg-blue-200 hover:bg-blue-300 text-blue-800 px-3 py-1 rounded-lg text-xs">
+                            Editar
+                        </a>
+                    </td>
+
+                    <td class="px-6 py-4 text-center">
+                        <a href="{{ url_for('maestros.detalles_maestro', id=maestro.id) }}"
+                           class="bg-green-200 hover:bg-green-300 text-green-800 px-3 py-1 rounded-lg text-xs">
+                            Ver
+                        </a>
+                    </td>
+
+                    <td class="px-6 py-4 text-center">
+                        <a href="{{ url_for('maestros.eliminar_maestro', id=maestro.id) }}"
+                           class="bg-red-200 hover:bg-red-300 text-red-800 px-3 py-1 rounded-lg text-xs">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}
