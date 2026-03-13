@@ -5,33 +5,28 @@
 <div class="max-w-md mx-auto mt-6 p-6 bg-white border border-gray-200 rounded-2xl shadow-lg">
 
     <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">
-        {% if form.nombre.data %} Modificar Alumno {% else %} Agregar Alumno {% endif %}
+        {% if form.nombre.data %} Modificar Curso {% else %} Agregar Curso {% endif %}
     </h2>
 
     <form method="post">
         {{ form.csrf_token }}
 
         <div class="mb-4">
-            {{ macros.campoNuevo(form.id, class="w-full border border-gray-300 rounded px-3 py-2") }}
-        </div>
-        <div class="mb-4">
             {{ macros.campoNuevo(form.nombre, class="w-full border border-gray-300 rounded px-3 py-2") }}
         </div>
         <div class="mb-4">
-            {{ macros.campoNuevo(form.apellidos, class="w-full border border-gray-300 rounded px-3 py-2") }}
+            {{ macros.campoNuevo(form.descripcion, class="w-full border border-gray-300 rounded px-3 py-2") }}
         </div>
         <div class="mb-4">
-            {{ macros.campoNuevo(form.telefono, class="w-full border border-gray-300 rounded px-3 py-2") }}
-        </div>
-        <div class="mb-4">
-            {{ macros.campoNuevo(form.email, class="w-full border border-gray-300 rounded px-3 py-2") }}
+            {{ macros.campoNuevo(form.maestro_id, class="w-full border border-gray-300 rounded px-3 py-2") }}
         </div>
 
         <div class="flex justify-center gap-4 mt-6">
             <button type="submit" class="bg-green-200 hover:bg-green-300 text-green-900 px-5 py-2 rounded-lg shadow-md">
                 {% if form.nombre.data %} Guardar Cambios {% else %} Agregar {% endif %}
             </button>
-            <a href="{{ url_for('alumnos.listar_alumnos') }}"
+
+            <a href="{{ url_for('cursos.listar_cursos') }}"
                class="bg-red-200 hover:bg-red-300 text-red-900 px-5 py-2 rounded-lg shadow-md">
                 Cancelar
             </a>

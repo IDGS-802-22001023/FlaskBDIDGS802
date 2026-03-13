@@ -1,77 +1,59 @@
 {% extends "layout.html" %}
+
 {% block container %}
-{% import "_macros.html" as marcos %}
+<div class="flex flex-col items-center justify-start pt-32 pb-20 bg-white">
 
-<div class="max-w-7xl mx-auto px-6 mt-12">
-    <br>
-    <div class="flex justify-between items-center mb-8">
-        <h2 class="text-3xl font-bold text-pink-600">
-            Lista de Alumnos
-        </h2><br>
-
-        <a href="{{ url_for('alumnos') }}"
-            class="bg-purple-200 hover:bg-purple-300 text-purple-800 focus:ring-4 focus:ring-purple-200 font-semibold rounded-xl text-sm px-6 py-2 shadow-md transition">
-            + Nuevo Alumno
-        </a>
+    <div class="text-center mb-20">
+        <h1 class="text-6xl font-extrabold text-purple-700 mb-8">
+            Sistema Escolar
+        </h1>
+        <p class="text-2xl text-gray-600 mt-6 mb-8">
+            Bienvenido al sistema de administración académica
+        </p>
     </div>
 
-    <div class="relative overflow-x-auto bg-pink-50 shadow-lg rounded-2xl border border-pink-200">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-16 w-full max-w-7xl justify-items-center">
 
-        <table class="w-full text-sm text-left text-gray-700">
-            <thead class="bg-gradient-to-r from-pink-100 to-purple-100 text-pink-700">
-                <tr>
-                    <th class="px-6 py-4 font-semibold">Nombre</th>
-                    <th class="px-6 py-4 font-semibold">Apellidos</th>
-                    <th class="px-6 py-4 font-semibold">Correo</th>
-                    <th class="px-6 py-4 font-semibold">telefono</th>
-                    <th class="px-6 py-4 font-semibold text-center">Editar</th>
-                    <th class="px-6 py-4 font-semibold text-center">Detalles</th>
-                    <th class="px-6 py-4 font-semibold text-center">Eliminar</th>
-                </tr>
-            </thead>
+        <a href="{{ url_for('alumnos.listar_alumnos') }}" class="block transform hover:scale-105 transition w-full max-w-xs">
+            <div class="bg-pink-100 p-12 rounded-3xl shadow-xl h-80 flex flex-col items-center justify-center text-center overflow-hidden">
+                <div class="text-6xl mb-6">👩‍🎓</div>
+                <h3 class="font-bold text-pink-700 text-2xl mb-4">Gestión de Alumnos</h3>
+                <p class="text-gray-600 text-base">
+                    Administra registros y datos estudiantiles.
+                </p>
+            </div>
+        </a>
 
-            <tbody>
-                {% for alum in alumno %}
-                <tr class="border-b border-pink-200 hover:bg-pink-100 transition">
-                    <td class="px-6 py-4 font-medium text-gray-800">
-                        {{ alum.nombre }}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{ alum.apellidos }}
-                    </td>
-                    <td class="px-6 py-4 text-purple-600">
-                        {{ alum.email }}
-                    </td>
-                    <td class="px-6 py-4 text-purple-600">
-                        {{ alum.telefono }}
-                    </td>
+        <a href="{{ url_for('maestros.listar_maestros') }}" class="block transform hover:scale-105 transition w-full max-w-xs">
+            <div class="bg-purple-100 p-12 rounded-3xl shadow-xl h-80 flex flex-col items-center justify-center text-center overflow-hidden">
+                <div class="text-6xl mb-6">👨‍🏫</div>
+                <h3 class="font-bold text-purple-700 text-2xl mb-4">Gestión de Maestros</h3>
+                <p class="text-gray-600 text-base">
+                    Control de docentes y especialidades.
+                </p>
+            </div>
+        </a>
 
-                    <td class="px-6 py-4 text-center">
-                        <a href="modificar?id={{ alum.id }}"
-                            class="inline-flex items-center justify-center bg-blue-200 hover:bg-blue-300 text-blue-800 font-medium rounded-xl text-xs px-4 py-2 transition">
-                            Editar
-                        </a>
-                    </td>
+        <a href="{{ url_for('cursos.listar_cursos') }}" class="block transform hover:scale-105 transition w-full max-w-xs">
+            <div class="bg-blue-100 p-12 rounded-3xl shadow-xl h-80 flex flex-col items-center justify-center text-center overflow-hidden">
+                <div class="text-6xl mb-6">📚</div>
+                <h3 class="font-bold text-blue-700 text-2xl mb-4">Cursos Académicos</h3>
+                <p class="text-gray-600 text-base">
+                    Organización de materias y clases.
+                </p>
+            </div>
+        </a>
 
-                    <td class="px-6 py-4 text-center">
-                        <a href="/detalles?id={{ alum.id }}"
-                            class="inline-flex items-center justify-center bg-green-200 hover:bg-green-300 text-green-800 font-medium rounded-xl text-xs px-4 py-2 transition">
-                            Ver
-                        </a>
-                    </td>
+        <a href="{{ url_for('inscripciones.listar_inscripciones') }}" class="block transform hover:scale-105 transition w-full max-w-xs">
+            <div class="bg-green-100 p-12 rounded-3xl shadow-xl h-80 flex flex-col items-center justify-center text-center overflow-hidden">
+                <div class="text-6xl mb-6">📝</div>
+                <h3 class="font-bold text-green-700 text-2xl mb-4">Inscripciones</h3>
+                <p class="text-gray-600 text-base">
+                    Registra alumnos en los cursos disponibles.
+                </p>
+            </div>
+        </a>
 
-                    <td class="px-6 py-4 text-center">
-                        <a href="/eliminar?id={{ alum.id }}"
-                            onclick="return confirm('¿Estás seguro de eliminar este registro?')"
-                            class="inline-flex items-center justify-center bg-red-200 hover:bg-red-300 text-red-800 font-medium rounded-xl text-xs px-4 py-2 transition">
-                            Eliminar
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
     </div>
 </div>
-
 {% endblock %}

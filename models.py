@@ -7,19 +7,101 @@ class Alumnos(db.Model):
     __tablename__ = 'alumnos'
 
     id = db.Column(db.Integer, primary_key=True)
-    nombre = db.Column(db.String(50))
-    apellidos = db.Column(db.String(200))
-    email = db.Column(db.String(120))
-    telefono =db.Column(db.String(20))
+    nombre = db.Column(db.String(50), nullable=False)
+    apellidos = db.Column(db.String(50), nullable=False)
+    telefono = db.Column(db.String(20))
+    email = db.Column(db.String(50))
     created_date = db.Column(db.DateTime, default=datetime.datetime.now)
 
+    cursos = db.relationship(
+        "Curso",
+        secondary="inscripciones",
+        back_populates="alumnos"
+    )
+
+
 class Maestros(db.Model):
-    __tablename__ = 'maestros'
+    __tablename__ = "maestros"
+
+    matricula = db.Column(db.String(10), primary_key=True)
+    nombre = db.Column(db.String(50), nullable=False)
+    apellidos = db.Column(db.String(50), nullable=False)
+    especialidad = db.Column(db.String(50))
+    email = db.Column(db.String(50))
+
+    cursos = db.relationship(
+        "Curso",
+        back_populates="maestro"
+    )
+
+
+class Curso(db.Model):
+    __tablename__ = "cursos"
 
     id = db.Column(db.Integer, primary_key=True)
-    matricula = db.Column(db.String(50))
-    nombre = db.Column(db.String(200))
-    apellidos = db.Column(db.String(120))
-    especialidad =db.Column(db.String(20))
-    email = db.Column(db.String(120))
-    
+    nombre = db.Column(db.String(150), nullable=False)
+    descripcion = db.Column(db.Text)
+
+    maestro_id = db.Column(
+        db.String(10),
+        db.ForeignKey("maestros.matricula"),
+        nullable=False
+    )
+
+    maestro = db.relationship(
+        "Maestros",
+        back_populates="cursos"
+    )
+
+    alumnos = db.relationship(
+        "Alumnos",
+        secondary="inscripciones",
+        back_populates="cursos"
+    )
+
+
+class Inscripcion(db.Model):
+    __tablename__ = "inscripciones"
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    alumno_id = db.Column(
+        db.Integer,
+        db.ForeignKey("alumnos.id", ondelete="CASCADE"),
+        nullable=False
+    )
+
+    curso_id = db.Column(
+        db.Integer,
+        db.ForeignKey("cursos.id"),
+        nullable=False
+    )
+
+    fecha_inscripcion = db.Column(
+        db.DateTime,
+        server_default=db.func.now()
+    )
+
+    alumno = db.relationship(
+        "Alumnos",
+        backref=db.backref(
+            "inscripciones",
+            cascade="all, delete-orphan",
+            passive_deletes=True
+        ),
+        lazy=True
+    )
+
+    curso = db.relationship(
+        "Curso",
+        backref="inscripciones",
+        lazy=True
+    )
+
+    __table_args__ = (
+        db.UniqueConstraint(
+            'alumno_id',
+            'curso_id',
+            name='uq_alumno_curso'
+        ),
+    )

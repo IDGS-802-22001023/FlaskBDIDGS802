@@ -5,23 +5,22 @@
 <div class="max-w-md mx-auto mt-6 p-6 bg-white border border-gray-200 rounded-2xl shadow-lg">
 
     <h2 class="text-2xl font-bold text-blue-600 mb-6 text-center">
-        Eliminar Maestro
+        Eliminar Curso
     </h2>
 
     <form method="post">
         {{form.csrf_token}}
-        <p><b>Matrícula:</b> {{ form.matricula.data }}</p>
-        <p><b>Nombre:</b> {{ form.nombre.data }} {{ form.apellidos.data }}</p>
-        <p><b>Email:</b> {{ form.email.data }}</p>
-        <p><b>Especialidad:</b> {{ form.especialidad.data }}</p>
+        <p><b>Nombre:</b> {{ curso.nombre }}</p>
+        <p><b>Descripción:</b> {{ curso.descripcion }}</p>
+        <p><b>Maestro:</b> {{ maestro.nombre }} {{ maestro.apellidos }}</p>
 
-        <!-- Botones -->
         <div class="flex justify-center gap-4 mt-6">
             <button type="submit" 
-                    class="bg-red-200 hover:bg-red-300 text-red-800 px-5 py-2 rounded-lg shadow">
+                    class="bg-red-200 hover:bg-red-300 text-red-800 px-5 py-2 rounded-lg shadow"
+                    onclick="return confirm('¿Estás seguro de que deseas eliminar este curso y todas sus inscripciones?');">
                 Confirmar Eliminación
             </button>
-            <a href="{{ url_for('maestros.listar_maestros') }}" 
+            <a href="{{ url_for('cursos.listar_cursos') }}" 
                class="bg-blue-200 hover:bg-blue-300 text-blue-800 px-5 py-2 rounded-lg shadow">
                 Cancelar
             </a>
